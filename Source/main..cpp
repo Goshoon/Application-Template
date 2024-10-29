@@ -7,6 +7,7 @@ int main(int argc, char* argv[])
 	//Screen currentScreen = Screen();
 	// Inicializar SDL2
 	Inititialize();
+	cout << "hola";
 
 	while(!app->done) /* Ciclo loop */
 	{
@@ -20,6 +21,10 @@ int main(int argc, char* argv[])
         {
         	ImGui::Begin("Hello, world!");
  			ImGui::Text(":3");
+ 			if (ImGui::Button("boton cagao"))
+ 			{
+ 				cout << "caca";
+ 			}
         	ImGui::End();
         }
         

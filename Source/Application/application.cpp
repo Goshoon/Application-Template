@@ -11,7 +11,7 @@ Application::Application()
 	window = SDL_CreateWindow(
 		"Application", 
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		1280, 720, SDL_WINDOW_SHOWN 
+		1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE
 	);
 
 	renderer = SDL_CreateRenderer(
