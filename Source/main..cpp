@@ -4,10 +4,11 @@ using std::cout, std::cin, std::shared_ptr, std::unique_ptr;
 unique_ptr<Application> app (new Application);
 int main(int argc, char* argv[])
 {
-	//Screen currentScreen = Screen();
 	// Inicializar SDL2
 	Inititialize();
-	cout << "hola";
+
+	// Crear escena inicial
+	Screen currentScreen = Screen();
 
 	while(!app->done) /* Ciclo loop */
 	{
@@ -17,17 +18,8 @@ int main(int argc, char* argv[])
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
-        
-        {
-        	ImGui::Begin("Hello, world!");
- 			ImGui::Text(":3");
- 			if (ImGui::Button("boton cagao"))
- 			{
- 				cout << "caca";
- 			}
-        	ImGui::End();
-        }
-        
+        currentScreen.Update(); /* Metodo de crear botones e interacciones de la escena actual */
+        currentScreen.Render(); /* Metodo de mostrar elementos como imagenes u efectos */
 
 		app->Display(); /* Mostrar interfaces y Actualizar pantalla */
 	}
