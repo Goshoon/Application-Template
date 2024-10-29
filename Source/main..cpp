@@ -1,7 +1,7 @@
 #include "main.h"
 using std::cout, std::cin, std::shared_ptr, std::unique_ptr;
 
-unique_ptr<Application> app (new Application);
+unique_ptr<Application> app (new Application); /* Crear una instancia de la aplicacion (ventana + render) */
 int main(int argc, char* argv[])
 {
 	// Inicializar SDL2
@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
 		app->Display(); /* Mostrar interfaces y Actualizar pantalla */
 	}
 
+	// Cerrar dependencias y limpiar memoria
 	Quit();
 	return 0;
 }
