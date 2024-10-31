@@ -1,5 +1,5 @@
 #include "application.h"
-
+#include <iostream>
 void Application::LoadTexture(const char* fileDir)
 {
 	//SDL_Texture* _texture = IMG_LoadTexture(renderer, fileDi);
@@ -34,11 +34,15 @@ void Application::Display()
 	ImGui::Render();
 	SDL_RenderClear( renderer );
 	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
+}
+
+void Application::DrawEverything()
+{
 	SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
 	SDL_RenderPresent(renderer);
 }
 
-void Application::Input()
+void Application::Input() /* Teclas e interacciones con la ventana */
 {
 	SDL_Event event;
 	while ( SDL_PollEvent(&event))
@@ -82,6 +86,9 @@ void Application::InputReleased(SDL_Event* event)
 		case SDLK_ESCAPE:
 			done = true;
 		break;
+		case SDLK_w:
+			std::cout << "hola";
+		break;
 
 	}
 }
@@ -92,4 +99,19 @@ void Application::InputPressed(SDL_Event* event)
 	{
 
 	}
+}
+
+void Application::DrawRectangle(int x, int y, int width, int height, SDL_Color color)
+{
+    // Establecer el color
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+
+    // Crear area donde se va a dibujar
+    SDL_Rect squareRect = { x, y, width, height }; // { x, y, ancho, alto }
+
+    // Dibujar el rectangulo en el area
+    SDL_RenderFillRect(renderer, &squareRect);
+
+    // Resetear el color a negro
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // color Default
 }

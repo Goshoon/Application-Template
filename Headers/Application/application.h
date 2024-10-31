@@ -22,8 +22,10 @@ public:
 	std::vector<SDL_Texture*> textures;
 
 	void Display();
+	void DrawEverything();
 	void Input();
 	void LoadTexture(const char* fileDir);
+	void DrawRectangle(int x, int y, int width, int height, SDL_Color color);
 private:
 	void InputReleased(SDL_Event* event);
 	void InputPressed(SDL_Event* event);

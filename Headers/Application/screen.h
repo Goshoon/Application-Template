@@ -12,6 +12,10 @@ public:
 	Screen();
 	~Screen();
 
-	void Update();
-	void Render();
+	virtual void Update();
+	virtual void Render();
 };
+
+/*
+	Interfaz de todas las "escenas en el programa"
+*/

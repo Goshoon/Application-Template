@@ -23,6 +23,8 @@ for %%f in (%SOURCES%) do (
 :: Link all object files into the final executable
 g++ %OBJECTS% -L ./Dependencies/SDL2/lib -o ./Bin/run.exe -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
 
+start ./Bin/run.exe
+
 endlocal
 pause
 exit
