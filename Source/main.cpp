@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
 	Inititialize();
 
 	// Crear escena inicial
-	Screen currentScreen = Screen();
+	unique_ptr<Screen> currentScreen (new sceneExample);
 
 	while(!app->done) /* Ciclo loop */
 	{
@@ -18,15 +18,14 @@ int main(int argc, char* argv[])
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
-        currentScreen.Update(); /* Metodo de crear botones e interacciones de la escena actual */
-        currentScreen.Render(); /* Metodo de mostrar elementos como imagenes u efectos */
-
+        currentScreen->Update(); /* Metodo de crear botones e interacciones de la escena actual */
 		app->Display(); /* Mostrar interfaces y Actualizar pantalla */
-		app->DrawRectangle(5, 5, 250, 250, {255, 255, 0, 255});
-		app->DrawEverything();
+		currentScreen->Render(); /* Metodo de mostrar elementos como imagenes u efectos */
+		app->DrawEverything(); /* Actualizar la pantalla y dibujar el frame actual */
 	}
 
 	// Cerrar dependencias y limpiar memoria
 	Quit();
+	
 	return 0;
 }

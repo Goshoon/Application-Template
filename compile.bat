@@ -4,27 +4,36 @@ set "SOURCES="
 set "OBJECTS="
 set "INCLUDES="
 
-:: Collect all source files and their respective object file paths
+:: Buscar todos los archivos .cpp en ./Source
 for /R ./Source %%f in (*.cpp) do (
     set "SOURCES=!SOURCES! %%f"
     set "OBJECTS=!OBJECTS! %%~nf.o"
 )
 
-:: Collect all include directories
+:: Buscar todas las carpetas de inclusion dentro de ./Headers
 for /R ./Headers /D %%d in (*) do (
-    set "INCLUDES=!INCLUDES! %%d"
+    set "INCLUDES=!INCLUDES! -I%%d"
 )
 
-:: Compile each source file into an object file
+:: Compilar todos los archivos a un archivo de objeto
 for %%f in (%SOURCES%) do (
-    g++ -std=c++17 -c %%f -I ./Headers/ -I %INCLUDES% -I ./Dependencies/SDL2/include -I ./Dependencies/ImGui -o %%~nf.o
+    g++ -std=c++17 -c %%f -I ./Headers/ %INCLUDES% -I ./Dependencies/SDL2/include -I ./Dependencies/ImGui -o %%~nf.o 2> ./Logs/error_log.txt
+
 )
 
-:: Link all object files into the final executable
-g++ %OBJECTS% -L ./Dependencies/SDL2/lib -o ./Bin/run.exe -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+:: Conectar todos los archivos al ejecutable
+g++ %OBJECTS% -L ./Dependencies/SDL2/lib -o ./Bin/run.exe -lmingw32 -lSDL2main -lSDL2 -lSDL2_image 2> ./Logs/error_log_linker.txt
 
+if %errorlevel% == 1 (
+    echo Compilation error!!!
+    pause
+    exit
+)
+
+pause
+
+echo Compilation succeeded. Running the app...
 start ./Bin/run.exe
 
 endlocal
-pause
 exit

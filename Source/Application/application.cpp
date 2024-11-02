@@ -31,13 +31,13 @@ Application::~Application()
 
 void Application::Display()
 {
-	ImGui::Render();
-	SDL_RenderClear( renderer );
-	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
+	SDL_RenderClear( renderer );	
 }
 
 void Application::DrawEverything()
 {
+	ImGui::Render();
+	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
 	SDL_SetRenderDrawColor( renderer, 0, 0, 255, 255 );
 	SDL_RenderPresent(renderer);
 }
@@ -111,7 +111,4 @@ void Application::DrawRectangle(int x, int y, int width, int height, SDL_Color c
 
     // Dibujar el rectangulo en el area
     SDL_RenderFillRect(renderer, &squareRect);
-
-    // Resetear el color a negro
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // color Default
 }
