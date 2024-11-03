@@ -1,9 +1,16 @@
 #include "application.h"
-#include <iostream>
-void Application::LoadTexture(const char* fileDir)
+
+void Application::AddTexture(const std::string& ID, const char* fileDir)
 {
-	//SDL_Texture* _texture = IMG_LoadTexture(renderer, fileDi);
-	textures.emplace_back(IMG_LoadTexture(renderer, fileDir));
+	SDL_Texture* texture = IMG_LoadTexture(renderer, fileDir);
+	images[ID] = texture;
+}
+
+SDL_Texture* Application::GetTexture(const std::string& ID) 
+{
+	auto it = images.find(ID);
+	return it != images.end() ? it->second : nullptr;
+	std::cout << images.size();
 }
 
 Application::Application()
@@ -27,6 +34,11 @@ Application::~Application()
 {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
+
+	for (auto& pair : images)
+	{
+		SDL_DestroyTexture(pair.second);
+	}
 }
 
 void Application::Display()
@@ -86,10 +98,6 @@ void Application::InputReleased(SDL_Event* event)
 		case SDLK_ESCAPE:
 			done = true;
 		break;
-		case SDLK_w:
-			std::cout << "hola";
-		break;
-
 	}
 }
 
@@ -97,7 +105,9 @@ void Application::InputPressed(SDL_Event* event)
 {
 	switch (event->key.keysym.sym)
 	{
-
+		case SDLK_w:
+			std::cout << "hola";
+		break;
 	}
 }
 
@@ -111,4 +121,18 @@ void Application::DrawRectangle(int x, int y, int width, int height, SDL_Color c
 
     // Dibujar el rectangulo en el area
     SDL_RenderFillRect(renderer, &squareRect);
+}
+
+void Application::RenderImage( SDL_Texture* image, int x, int y )
+{
+	int width, height;
+	SDL_QueryTexture(image, NULL, NULL, &width, &height);
+	SDL_Rect dst = { x, y, width, height };
+	SDL_RenderCopy(renderer, image, NULL, &dst);
+}
+
+void Application::RenderImage( SDL_Texture* image, int x, int y, int w, int h )
+{
+	SDL_Rect dst = { x, y, w, h };
+	SDL_RenderCopy(renderer, image, NULL, &dst);
 }

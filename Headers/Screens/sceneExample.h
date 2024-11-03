@@ -8,4 +8,8 @@
 
 		void Update() override;
 		void Render() override;
+
+	private:
+		bool ventanaEjemplo;
+		SDL_Texture* gorp;
 	};

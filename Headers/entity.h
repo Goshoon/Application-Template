@@ -1,7 +1,5 @@
 #pragma once
 #include <memory>
-#include "SDL.h"
-#include "SDL_image.h"
 #include "application.h"
 using std::unique_ptr;
 

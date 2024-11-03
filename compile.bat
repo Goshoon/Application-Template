@@ -17,18 +17,23 @@ for /R ./Headers /D %%d in (*) do (
 
 :: Compilar todos los archivos a un archivo de objeto
 for %%f in (%SOURCES%) do (
-    g++ -std=c++17 -c %%f -I ./Headers/ %INCLUDES% -I ./Dependencies/SDL2/include -I ./Dependencies/ImGui -o %%~nf.o 2> ./Logs/error_log.txt
-
+    g++ -std=c++17 -c %%f -I ./Headers/ %INCLUDES% -I ./Dependencies/SDL2/include -I ./Dependencies/ImGui -o %%~nf.o
+     if errorlevel 1 (
+        echo Error compiling %%f.
+        pause
+        exit /b 1
+    )
 )
 
 :: Conectar todos los archivos al ejecutable
-g++ %OBJECTS% -L ./Dependencies/SDL2/lib -o ./Bin/run.exe -lmingw32 -lSDL2main -lSDL2 -lSDL2_image 2> ./Logs/error_log_linker.txt
-
-if %errorlevel% == 1 (
-    echo Compilation error!!!
+g++ %OBJECTS% -L ./Dependencies/SDL2/lib -o ./Bin/run.exe -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+ if errorlevel 1 (
+    echo Linker error compiling %%f.
     pause
-    exit
+    exit /b 1
 )
+
+xcopy "./Resources" "./Bin/Resources" /E /I /K /Y
 
 pause
 

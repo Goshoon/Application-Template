@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
-#include <vector>
+#include <string>
+#include <unordered_map>
+
 #include "SDL.h"
 #include "SDL_image.h"
 
@@ -15,17 +17,20 @@ public:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
+	std::unordered_map<std::string, SDL_Texture*> images;
+
 	bool done = false;
 	bool mbLeft = false;
 	bool mbRight = false;
 
-	std::vector<SDL_Texture*> textures;
-
 	void Display();
 	void DrawEverything();
 	void Input();
-	void LoadTexture(const char* fileDir);
+	void AddTexture(const std::string& ID, const char* fileDir);
+	SDL_Texture* GetTexture(const std::string& ID);
 	void DrawRectangle(int x, int y, int width, int height, SDL_Color color);
+	void RenderImage( SDL_Texture* image, int x, int y );
+	void RenderImage( SDL_Texture* image, int x, int y, int w, int h );
 private:
 	void InputReleased(SDL_Event* event);
 	void InputPressed(SDL_Event* event);

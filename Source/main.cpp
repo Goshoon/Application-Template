@@ -1,14 +1,14 @@
 #include "main.h"
-using std::cout, std::cin, std::shared_ptr, std::unique_ptr;
+using std::cout, std::cin, std::shared_ptr, std::unique_ptr, std::make_unique;
 
-unique_ptr<Application> app (new Application); /* Crear una instancia de la aplicacion (ventana + render) */
+unique_ptr<Application> app = make_unique<Application>(); /* Crear una instancia de la aplicacion (ventana + render) */
 int main(int argc, char* argv[])
 {
 	// Inicializar SDL2 & ImGui
 	Inititialize();
 
 	// Crear escena inicial
-	unique_ptr<Screen> currentScreen (new sceneExample);
+	unique_ptr<Screen> currentScreen = make_unique<sceneExample>();
 
 	while(!app->done) /* Ciclo loop */
 	{
