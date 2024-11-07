@@ -8,8 +8,6 @@ Entity::Entity()
 
 Entity::Entity(int _x, int _y)
 {
-	//sprite = app->textures.at(0);
-
 	SDL_Point _spriteDimentions;
 	SDL_QueryTexture(sprite, NULL, NULL, &_spriteDimentions.x, &_spriteDimentions.y);
 

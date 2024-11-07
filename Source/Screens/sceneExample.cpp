@@ -40,6 +40,5 @@ void sceneExample::Update()
 
 void sceneExample::Render()
 {
-	
 	app->RenderImage(gorp, 0, 0, 256, 256);
 }

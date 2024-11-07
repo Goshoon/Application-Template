@@ -24,6 +24,8 @@ Application::Application()
 	renderer = SDL_CreateRenderer(
 		window, -1, SDL_RENDERER_ACCELERATED 
 	);
+	
+	SDL_SetWindowMinimumSize(window, 800, 600);
 
 	done = false;
 	mbLeft = false;

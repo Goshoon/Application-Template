@@ -10,8 +10,13 @@ int main(int argc, char* argv[])
 	// Crear escena inicial
 	unique_ptr<Screen> currentScreen = make_unique<sceneExample>();
 
+	// Crear variables para contar ticks del programa
+	long then;
+	float remainder;
+	
 	while(!app->done) /* Ciclo loop */
 	{
+		then = SDL_GetTicks(); /* Guardar los ticks al principio del loop */
 		app->Input(); /* Detectar teclas e interacciones con la ventana */
 
 		ImGui_ImplSDLRenderer2_NewFrame();
@@ -22,6 +27,8 @@ int main(int argc, char* argv[])
 		app->Display(); /* Mostrar interfaces y Actualizar pantalla */
 		currentScreen->Render(); /* Metodo de mostrar elementos como imagenes u efectos */
 		app->DrawEverything(); /* Actualizar la pantalla y dibujar el frame actual */
+
+		CapFrameRate(&then, &remainder); /* Hacer que la aplicacion espere y no exeda los 60 fps */
 	}
 
 	// Cerrar dependencias y limpiar memoria
