@@ -1,7 +1,12 @@
 #include "main.h"
 using std::cout, std::cin, std::shared_ptr, std::unique_ptr, std::make_unique;
 
-unique_ptr<Application> app = make_unique<Application>(); /* Crear una instancia de la aplicacion (ventana + render) */
+TTF_Font* font;
+unique_ptr<Application> app = make_unique<Application>(); /* Crear una instancia de la aplicacion (ventana + render) y que sea global*/
+
+int fps = 144;
+int desiredDelta = 1000 / fps;
+
 int main(int argc, char* argv[])
 {
 	// Inicializar SDL2 & ImGui
@@ -10,13 +15,9 @@ int main(int argc, char* argv[])
 	// Crear escena inicial
 	unique_ptr<Screen> currentScreen = make_unique<sceneExample>();
 
-	// Crear variables para contar ticks del programa
-	long then;
-	float remainder;
-	
 	while(!app->done) /* Ciclo loop */
 	{
-		then = SDL_GetTicks(); /* Guardar los ticks al principio del loop */
+		int startLoop = SDL_GetTicks(); /* Guardar los ticks al principio del loop */
 		app->Input(); /* Detectar teclas e interacciones con la ventana */
 
 		ImGui_ImplSDLRenderer2_NewFrame();
@@ -28,7 +29,11 @@ int main(int argc, char* argv[])
 		currentScreen->Render(); /* Metodo de mostrar elementos como imagenes u efectos */
 		app->DrawEverything(); /* Actualizar la pantalla y dibujar el frame actual */
 
-		CapFrameRate(&then, &remainder); /* Hacer que la aplicacion espere y no exeda los 60 fps */
+		int delta = SDL_GetTicks() - startLoop;
+		if (delta < desiredDelta)
+		{
+			SDL_Delay(desiredDelta - delta);
+		}
 	}
 
 	// Cerrar dependencias y limpiar memoria

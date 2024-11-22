@@ -5,4 +5,3 @@
 #include "application.h"
 #include "context.h"
 #include "sceneExample.h"
-#include "capFramerate.h"

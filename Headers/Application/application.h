@@ -5,9 +5,12 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_sdlrenderer2.h"
+
+extern TTF_Font* font;
 
 class Application
 {
@@ -31,6 +34,7 @@ public:
 	void DrawRectangle(int x, int y, int width, int height, SDL_Color color);
 	void RenderImage( SDL_Texture* image, int x, int y );
 	void RenderImage( SDL_Texture* image, int x, int y, int w, int h );
+	void RenderText(const char* toRenderText);
 private:
 	void InputReleased(SDL_Event* event);
 	void InputPressed(SDL_Event* event);

@@ -138,3 +138,8 @@ void Application::RenderImage( SDL_Texture* image, int x, int y, int w, int h )
 	SDL_Rect dst = { x, y, w, h };
 	SDL_RenderCopy(renderer, image, NULL, &dst);
 }
+
+void Application::RenderText(const char* toRenderText)
+{
+	
+}
