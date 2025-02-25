@@ -35,5 +35,5 @@ void Entity::Update()
 
 void Entity::Draw()
 {
-	SDL_RenderCopy(app->renderer, sprite, NULL, &dst);
+	SDL_RenderCopy(Application::GetInstance().renderer, sprite, NULL, &dst);
 }

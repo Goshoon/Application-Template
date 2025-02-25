@@ -15,8 +15,11 @@ extern TTF_Font* font;
 class Application
 {
 public:
-	Application();
-	~Application();
+	static Application& GetInstance() {
+        static Application instance;
+        return instance;
+    }
+    
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
@@ -36,6 +39,13 @@ public:
 	void RenderImage( SDL_Texture* image, int x, int y, int w, int h );
 	void RenderText(const char* toRenderText);
 private:
+	Application();
+	~Application();
 	void InputReleased(SDL_Event* event);
 	void InputPressed(SDL_Event* event);
+
+	Application(const Application&) = delete;
+    Application& operator=(const Application&) = delete;
+
+    SDL_Texture* gorp;
 };

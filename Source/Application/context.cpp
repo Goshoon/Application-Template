@@ -2,6 +2,7 @@
 
 void Inititialize() // Iniciar SDL y SDL_Image
 {
+    Application& app = Application::GetInstance();
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG;
     TTF_Init();
@@ -17,8 +18,8 @@ void Inititialize() // Iniciar SDL y SDL_Image
     ImGui::StyleColorsDark(); // Tema
 
     // Setup Platform/Renderer backends
-    ImGui_ImplSDL2_InitForSDLRenderer(app->window, app->renderer);
-    ImGui_ImplSDLRenderer2_Init(app->renderer);
+    ImGui_ImplSDL2_InitForSDLRenderer(app.window, app.renderer);
+    ImGui_ImplSDLRenderer2_Init(app.renderer);
 }
 void Quit() // Cerrar aplicacion
 {

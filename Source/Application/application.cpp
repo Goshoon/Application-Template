@@ -18,11 +18,11 @@ Application::Application()
 	window = SDL_CreateWindow(
 		"Application", 
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED
+		800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE
 	);
 
 	renderer = SDL_CreateRenderer(
-		window, -1, SDL_RENDERER_ACCELERATED 
+		window, -1, SDL_RENDERER_SOFTWARE  /* Cambiar SDL_RENDERER_ACCELERATED -> SDL_RENDERER_ACCELERATED  Para usar GPU */
 	);
 	
 	SDL_SetWindowMinimumSize(window, 800, 600);

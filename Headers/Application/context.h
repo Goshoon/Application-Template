@@ -9,7 +9,6 @@
 #include "imgui_impl_sdlrenderer2.h"
 
 #include "application.h"
-extern std::unique_ptr<Application> app;
 extern TTF_Font* font;
 
 #ifndef CONTEXT_H
