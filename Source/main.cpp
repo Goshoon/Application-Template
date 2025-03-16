@@ -2,7 +2,6 @@
 using std::cout, std::cin, std::unique_ptr, std::make_unique;
 
 TTF_Font* font;
-
 int fps = 144;
 int desiredDelta = 1000 / fps;
 
@@ -11,10 +10,9 @@ int main(int argc, char* argv[])
 	// Inicializar SDL2 & ImGui
 	Inititialize();
 
-	Application& app = Application::GetInstance(); /* Crear una instancia de la aplicacion (ventana + render) y que sea global*/
-
-	// Crear escena inicial
-	unique_ptr<Screen> currentScreen = make_unique<sceneExample>();
+	// Crear referencias a clase de applicacion y manejador de escenas
+	Application& app = Application::GetInstance(); /* Entorno de Renderer y Ventana */
+	currentScreen = make_unique<sceneExample>(); /* Escena inicial */
 
 	while(!app.done) /* Ciclo loop */
 	{
