@@ -1,4 +1,5 @@
 @echo off
+color 2
 setlocal enabledelayedexpansion
 set "SOURCES="
 set "OBJECTS="
@@ -17,7 +18,7 @@ for /R ./Headers /D %%d in (*) do (
 
 :: Compilar todos los archivos a un archivo de objeto
 for %%f in (%SOURCES%) do (
-    g++ -std=c++17 -c %%f -I ./Headers/ %INCLUDES% -I ./Dependencies/SDL2/include -I ./Dependencies/ImGui -o %%~nf.o
+    g++ -std=c++17 -c %%f -I ./Headers/ %INCLUDES% -I C:/Dependencies/SDL2/include -o %%~nf.o
      if errorlevel 1 (
         echo Error compiling %%f.
         pause
@@ -26,7 +27,7 @@ for %%f in (%SOURCES%) do (
 )
 
 :: Conectar todos los archivos al ejecutable
-g++ %OBJECTS% -L ./Dependencies/SDL2/lib -o ./Bin/run.exe -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+g++ %OBJECTS% -L C:/Dependencies/SDL2/lib -o ./Bin/run.exe -static-libgcc -static-libstdc++ -lmingw32 -Wpedantic -Wmaybe-uninitialized -DSDL2_STATIC -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
  if errorlevel 1 (
     echo Linker error compiling %%f.
     pause
