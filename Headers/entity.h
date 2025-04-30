@@ -9,18 +9,16 @@ class Entity
 {
 public:
 	Entity();
-	Entity(int _x, int _y);
+	Entity(int x, int y);
 
-	int x, y;
 	unsigned short frame, xOffset, yOffset;
 	bool animated;
 
 	SDL_Texture* sprite;
-
-	SDL_Rect dst; // Espacio en el area de juego
+	SDL_Rect position; // Position on game screen
 
 	void Update();
 	void Draw();
 private:
-	SDL_Rect src; // Animacion
+	SDL_Rect frame; // Animation Frame
 };
