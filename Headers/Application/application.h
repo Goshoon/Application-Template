@@ -12,8 +12,6 @@
 class Application
 {
 public:
-	Application();
-	~Application();
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
@@ -22,7 +20,11 @@ public:
 	bool done = false;
 	bool mbLeft = false;
 	bool mbRight = false;
-
+  static Application& GetInstance()
+  {
+    static Application instance;
+    return instance;
+  }
 	void Display();
 	void DrawEverything();
 	void Input();
@@ -32,6 +34,12 @@ public:
 	void RenderImage( SDL_Texture* image, int x, int y );
 	void RenderImage( SDL_Texture* image, int x, int y, int w, int h );
 private:
+	Application();
+	~Application();
+
+  Application(const Application&) = delete;
+  Application& operator=(const Application&) = delete;
+
 	void InputReleased(SDL_Event* event);
 	void InputPressed(SDL_Event* event);
 };

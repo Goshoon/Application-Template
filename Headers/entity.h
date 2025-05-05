@@ -1,9 +1,5 @@
 #pragma once
-#include <memory>
 #include "application.h"
-using std::unique_ptr;
-
-extern unique_ptr<Application> app;
 
 class Entity
 {
@@ -11,7 +7,7 @@ public:
 	Entity();
 	Entity(int x, int y);
 
-	unsigned short frame, xOffset, yOffset;
+	unsigned short frameIndex, xOffset, yOffset;
 	bool animated;
 
 	SDL_Texture* sprite;
@@ -21,4 +17,5 @@ public:
 	void Draw();
 private:
 	SDL_Rect frame; // Animation Frame
+  Application& app = Application::GetInstance();
 };

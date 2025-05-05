@@ -4,8 +4,8 @@ sceneExample::sceneExample()
 {
 	std::cout << "Created scenedd!\n";
 	ventanaEjemplo = true;
-	app->AddTexture("gorp", "Resources/Images/gorp.png");
-	gorp = app->GetTexture("gorp");
+	app.AddTexture("gorp", "Resources/Images/gorp.png");
+	gorp = app.GetTexture("gorp");
 }
 
 sceneExample::~sceneExample()
@@ -41,5 +41,5 @@ void sceneExample::Update()
 void sceneExample::Render()
 {
 	
-	app->RenderImage(gorp, 0, 0, 256, 256);
+  app.RenderImage(gorp, 0, 0, 256, 256);
 }

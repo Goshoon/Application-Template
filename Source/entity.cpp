@@ -8,6 +8,7 @@ Entity::Entity(int x, int y)
 	SDL_Point _spriteDimentions;
 	SDL_QueryTexture(sprite, NULL, NULL, &_spriteDimentions.x, &_spriteDimentions.y);
 
+  frameIndex = 0;
   frame.x = 0;
 	frame.y = 0;
 	frame.w = _spriteDimentions.x;
@@ -24,5 +25,5 @@ void Entity::Update()
 
 void Entity::Draw()
 {
-	SDL_RenderCopy(app->renderer, sprite, NULL, &position);
+	SDL_RenderCopy(app.renderer, sprite, NULL, &position);
 }
