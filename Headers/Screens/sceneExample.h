@@ -12,4 +12,5 @@
 	private:
 		bool ventanaEjemplo;
 		SDL_Texture* gorp;
+    Application& app = Application::GetInstance();
 	};
