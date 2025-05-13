@@ -11,7 +11,9 @@ public:
 	bool animated;
 
 	SDL_Texture* sprite;
-	SDL_Rect position; // Position on game screen
+	SDL_Rect position; // Position on virtual enviroment
+
+  bool CheckCollision(const Entity& other) const 
 
 	void Update();
 	void Draw();

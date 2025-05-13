@@ -27,3 +27,8 @@ void Entity::Draw()
 {
 	SDL_RenderCopy(app.renderer, sprite, NULL, &position);
 }
+
+bool Entity::CheckCollision(const Entity& other) const 
+{
+  return SDL_HasIntersection(&position, &other.position);
+}

@@ -17,7 +17,7 @@ void sceneExample::Update()
 {
 	if (ventanaEjemplo)
 	{
-		ImGui::Begin("Ventana de ejemplo :3", &ventanaEjemplo);
+		ImGui::Begin("Sample window :3", &ventanaEjemplo);
 		ImGui::Text(":3333");
 
 		ImVec2 imageSize(200.0f, 200.0f); // Adjust as needed
