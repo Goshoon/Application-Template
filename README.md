@@ -7,16 +7,17 @@
                 <li> GUI built with Dear ImGui </li>
                 <li> Cross-platform support (Windows & Linux) </li>
                 <li> Load custom images and use them in the SDL2 enviroment </li>
+                <li> Load custom sounds </li>
         </ul>
 
 <h2><b> Usage </b></h2>
         <ul>
                 <li> Clone this repository and modify it to your liking </li>
                 <li> You can access the Application class by simply calling "Application::GetInstance()" and including the application.h file </li>
-                <li> It is posible to add a texture by placing it on the resource folder and calling "Application::GetInstance().AddTexture("TextureName")" it is then stored and can be accesed by "Application::GetInstance().GetTexture("TextureName")"</li>
+                <li> It is posible to add a texture by placing it on the Resource/Images folder and calling "Application::GetInstance().AddTexture("TextureName")" it is then stored and can be accesed by "Application::GetInstance().GetTexture("TextureName")"</li>
+                <li> The previous point is also true for sounds and music, try "Application::GetInstance().AddSound"SoundName")" it is then stored and can be accesed by "Application::GetInstance().GetSound("SoundName")" to add and get sounds play them with SDL_Mixer functions once you have your sounds placed in Resources/Sounds</li>
+                <li> It is also important to note that Resource/Images and Resource/Sounds needs to be created manually on the Bin folder with all the necesary .dlls files in Windows case</li>
         </ul>
-
-<h2><b> </b></h2>
 
 <b><h2>Compile</h2></b>
         For linux users, there is a Makefile, you only need SDL2, Mingw and Make; All you need to do is run "make build Makefile" and the executable will apperar on the Bin folder.
