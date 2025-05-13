@@ -17,7 +17,7 @@ public:
 	SDL_Renderer* renderer;
 
 	std::unordered_map<std::string, SDL_Texture*> images;
-	std::unordered_map<std::string, SDL_Music*> sounds;
+	std::unordered_map<std::string, Mix_Music*> sounds;
 
 	bool done = false;
 	bool mbLeft = false;
@@ -33,7 +33,7 @@ public:
 	void AddTexture(const std::string& ID, const char* fileDir);
 	SDL_Texture* GetTexture(const std::string& ID);
 	void AddSound(const std::string& ID, const char* fileDir);
-	SDL_Music* GetSound(const std::string& ID);
+	Mix_Music* GetSound(const std::string& ID);
 
 	void DrawRectangle(int x, int y, int width, int height, SDL_Color color);
 	void RenderImage( SDL_Texture* image, int x, int y );

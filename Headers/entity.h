@@ -13,7 +13,11 @@ public:
 	SDL_Texture* sprite;
 	SDL_Rect position; // Position on virtual enviroment
 
-  bool CheckCollision(const Entity& other) const 
+	bool CheckCollision(const Entity& other) const 
+	{
+  		return SDL_HasIntersection(&position, &other.position);
+	}
+
 
 	void Update();
 	void Draw();
