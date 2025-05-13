@@ -1,12 +1,12 @@
 #include "context.h"
 
-void Inititialize() // Initialoze SDL y SDL_Image
+void Inititialize() // Initialize SDL2+Modules+DearImGui
 {
   Application& app = Application::GetInstance();
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG;
 
-	// Inicializar Dear ImGui
+	// Initialize DearImGui
 	IMGUI_CHECKVERSION();
   ImGui::CreateContext();
   ImGuiIO& io = ImGui::GetIO(); (void)io;
